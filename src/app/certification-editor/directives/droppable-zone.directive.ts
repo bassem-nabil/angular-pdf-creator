@@ -3,7 +3,7 @@ import { componentTreeMap } from '../content-elements/content-element.interface'
 import { DragDropObject, parseObject } from './helper';
 import { ContentElementComponent } from '../content-elements/content-element.component';
 import { EditorService } from '../services/editor.service';
-import { Grid2ColumnsLeftElementComponent, Grid2ColumnsRightElementComponent, Grid3ColumnsElementComponent } from '../content-elements/grid-element/grid-element.component';
+import { Grid1ColumnElementComponent, Grid2ColumnsLeftElementComponent, Grid2ColumnsRightElementComponent, Grid3ColumnsElementComponent } from '../content-elements/grid-element/grid-element.component';
 
 @Directive({
   selector: '[DroppableZone]',
@@ -11,10 +11,11 @@ import { Grid2ColumnsLeftElementComponent, Grid2ColumnsRightElementComponent, Gr
 })
 export class DroppableZoneDirective {
 
-  @Input() gridType!: 'Grid2ColumnsLeft' | 'Grid2ColumnsRight' | 'Grid3Columns';
+  @Input() gridType!: 'Grid1Column' | 'Grid2ColumnsLeft' | 'Grid2ColumnsRight' | 'Grid3Columns';
   @Input() gridZone!: 'left' | 'middle' | 'right';
 
   constructor(
+    @Host() @Optional() private hostComp0: Grid1ColumnElementComponent,
     @Host() @Optional() private hostComp1: Grid2ColumnsLeftElementComponent,
     @Host() @Optional() private hostComp2: Grid2ColumnsRightElementComponent,
     @Host() @Optional() private hostComp3: Grid3ColumnsElementComponent,
@@ -24,6 +25,8 @@ export class DroppableZoneDirective {
   ) { }
 
   get hostComp() {
+    if (this.gridType === 'Grid1Column')
+      return this.hostComp0;
     if (this.gridType === 'Grid2ColumnsLeft')
       return this.hostComp1;
     if (this.gridType === 'Grid2ColumnsRight')

@@ -1,5 +1,5 @@
 import { DragDropObject } from "../directives/helper";
-import { Grid2ColumnsLeftElementComponent, Grid2ColumnsRightElementComponent, Grid3ColumnsElementComponent } from "./grid-element/grid-element.component";
+import { Grid1ColumnElementComponent, Grid2ColumnsLeftElementComponent, Grid2ColumnsRightElementComponent, Grid3ColumnsElementComponent } from "./grid-element/grid-element.component";
 import { HeadingElementComponent } from "./heading-element/heading-element.component";
 import { ImageElementComponent } from "./image-element/image-element.component";
 import { ParagraphElementComponent } from "./paragraph-element/paragraph-element.component";
@@ -30,6 +30,7 @@ export const initContentElementData : ContentElementData = {
 export const componentTreeMap = {
   p: ParagraphElementComponent,
   h: HeadingElementComponent,
+  layoutOneColLeft: Grid1ColumnElementComponent,
   layoutTwoColLeft: Grid2ColumnsLeftElementComponent,
   layoutTwoColRight: Grid2ColumnsRightElementComponent,
   layoutThreeCol: Grid3ColumnsElementComponent,

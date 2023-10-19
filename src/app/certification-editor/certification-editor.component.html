@@ -2,7 +2,7 @@
   <div class="j-editor-header">
     <div class="template-name">
       <label>Template Name:</label>
-      <input class="template-name-control" placeholder="Enter Name Here" type="text" [formControl]="templateName"/>
+      <input class="template-name-control" placeholder="Enter Name Here" type="text" [formControl]="templateName" />
     </div>
     <div class="btn-actions">
       <button (click)="deleteTemplate()">Delete</button>
@@ -14,6 +14,12 @@
   <div class="j-editor-body">
     <div class="j-editor-aside">
       <j-collapse headerName="LAYOUT MODULES">
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="layoutOneColLeft">
+          <svg width="47" height="20" viewBox="0 0 47 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="45" height="19" rx="1.5" stroke="#205280" />
+          </svg>
+          <span>1 column</span>
+        </div>
         <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="layoutTwoColLeft">
           <svg width="47" height="20" viewBox="0 0 47 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.5" y="0.5" width="13" height="19" rx="1.5" stroke="#205280" />
