@@ -1,0 +1,89 @@
+.jz-widget {
+  position: relative;
+  background: #fff;
+
+  &.m-p {
+    margin: 17px;
+    padding: 10px;
+    border: 1px solid #D1D8E1;
+    border-radius: 3px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: transparent;
+    right: -70px;
+    top: 0px;
+    width: 100px;
+    height: 140px;
+  }
+
+  &:hover {
+    .options {
+      display: flex;
+    }
+  }
+
+  .options {
+    padding: 3px;
+    border-radius: 5px;
+    gap: 1px;
+    background-color: #eee;
+    position: absolute;
+    right: -50px;
+    top: 0px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0px 0px 3px #eee;
+  }
+
+  .btn-option {
+    // border-radius: 20px;
+    // border: 1px solid #A0A1AA;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background:#fff;
+    height: 35px;
+    width: 40px;
+    border:none;
+    &:hover {
+      background: #E6EDF0;
+
+    }
+
+    >svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    cursor: pointer;
+  }
+}
+.notinsideDropZone-options {
+  // right: -50px !important;
+  // top: 0px !important;
+}
+.insideDropZone-options {
+  // right: 251px !important;
+   top: 50px !important;
+}
+.deleteEl-customWrapper{
+  position: relative;
+}
+.deleteEl-custom:before {
+  content: '✕';
+}
+.deleteEl-custom {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: larger;
+  z-index: 9;
+  font-weight: 900;
+}

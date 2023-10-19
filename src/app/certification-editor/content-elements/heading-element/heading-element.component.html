@@ -1,0 +1,10 @@
+<div class="j-heading-element">
+  <div class="tooblar-container" *ngIf="(isEditMode$ | async)">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+    </ngx-editor-menu>
+  </div>
+  <div class="editor-container">
+    <ngx-editor [formControl]="editorContent" [editor]="editor">
+    </ngx-editor>
+  </div>
+</div>

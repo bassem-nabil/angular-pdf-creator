@@ -1,0 +1,30 @@
+.j-paragraph-element {
+  position: relative;
+
+  &:hover {
+    .tooblar-container {
+      display: block;
+    }
+  }
+}
+
+.tooblar-container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 100;
+  top: -48px;
+  border-radius: 5px;
+  border: 1px solid #D1D8E1;
+  background: #FFF;
+  box-shadow: 0px 4px 11px 0px rgba(0, 0, 0, 0.05);
+  width: max-content;
+  padding: 3px 10px;
+  display: none;
+}
+
+
+.editor-container {
+  // margin-top: 20px;
+  // padding-top: 20px;
+}

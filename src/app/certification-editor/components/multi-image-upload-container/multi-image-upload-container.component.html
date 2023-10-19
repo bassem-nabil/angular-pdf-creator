@@ -1,0 +1,9 @@
+<div class="img-container">
+  <div *ngFor="let item of imageList" [ngClass]="{'inactive': !(isEditMode$ | async)}" Draggable componentType="img" [componentData]="{img: item}">
+    <img [src]="item" alt="Uploaded Image">
+  </div>
+</div>
+<div class="img-upload-container">
+  <input type="file" (change)="onFileSelected($event)" #inpImg [multiple]="true">
+  <div>Drop image here or <span (click)="inpImg.click()">browse</span></div>
+</div>

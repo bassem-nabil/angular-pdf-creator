@@ -1,0 +1,20 @@
+.j-collapse-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 40px;
+  cursor: pointer;
+  .j-collapse-header-name {
+    color: #565C65;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+}
+
+.j-collapse-body {
+  margin-bottom: 20px;
+  overflow: hidden;
+}

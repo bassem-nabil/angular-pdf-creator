@@ -1,0 +1,44 @@
+.img-upload-container {
+  width: 265px;
+  height: 70px;
+  border-radius: 5px;
+  border: 1px dashed #7A8990;
+  background: #D6DEE4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #393939;
+  font-size: 14px;
+  font-weight: 500;
+
+  input {
+    display: none;
+  }
+
+  span {
+    color: #205280;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration-line: underline;
+  }
+}
+
+
+.img-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  >div {
+    &.inactive {
+      pointer-events: none;
+      opacity: .5;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  margin-bottom: 10px;
+}

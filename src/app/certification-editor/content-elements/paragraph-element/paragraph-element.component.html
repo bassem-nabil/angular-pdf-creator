@@ -1,0 +1,13 @@
+<div class="j-paragraph-element">
+  <div class="tooblar-container" *ngIf="(isEditMode$ | async)">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+    </ngx-editor-menu>
+  </div>
+  <div class="editor-container">
+    <ngx-editor [formControl]="editorContent" [editor]="editor">
+    </ngx-editor>
+  </div>
+</div>
+<!-- <p contenteditable="true">
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit rerum veniam quos architecto ad similique vitae libero veritatis cupiditate laboriosam fugiat, error placeat sed, odio consequuntur magnam doloribus, officiis illo!
+</p> -->

@@ -1,0 +1,13 @@
+<div class="j-collapse">
+  <div class="j-collapse-header" (click)="toggle()">
+    <span class="j-collapse-header-name">{{headerName}}</span>
+    <svg [@dropIconAnimation]="animationState" xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
+      <path opacity="0.6"
+        d="M7.77319 2.19914C8.06045 1.92249 8.06045 1.4626 7.77319 1.18596C7.50083 0.923656 7.06981 0.923656 6.79745 1.18596L4.17342 3.71302C4.0766 3.80626 3.9234 3.80626 3.82658 3.71302L1.20255 1.18596C0.930186 0.923656 0.499172 0.923656 0.226808 1.18596C-0.0604506 1.4626 -0.0604506 1.92249 0.226808 2.19914L3.47974 5.33187C3.77019 5.61158 4.22981 5.61158 4.52026 5.33187L7.77319 2.19914Z"
+        fill="#091C36" />
+    </svg>
+  </div>
+  <div class="j-collapse-body" [@heightAnimation]="animationState">
+    <ng-content></ng-content>
+  </div>
+</div>

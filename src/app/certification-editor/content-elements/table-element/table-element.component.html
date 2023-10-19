@@ -1,0 +1,20 @@
+<div class="j-table-element" [ngClass]="{'m-p': (isEditMode$ | async)}">
+  <select [formControl]="tableSize" *ngIf="(isEditMode$ | async)">
+    <option *ngFor="let item of values" [value]="item">{{item}}</option>
+  </select>
+  <table  class="table-element" *ngIf="!!rowsCount && !!colsCount" #tableRef>
+    <thead>
+      <th *ngFor="let head of matrixHeader; let i=index;" [attr.contenteditable]="(isEditMode$ | async)" (input)="onContentChange(0,i, $event)">
+        {{head}}
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let line of matrixBody; let l=index;">
+        <td *ngFor="let col of line; let c=index;" [attr.contenteditable]="(isEditMode$ | async)" (input)="onContentChange(l+1,c, $event)">
+          {{col}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,93 @@
+<div class="j-editor">
+  <div class="j-editor-header">
+    <div class="template-name">
+      <label>Template Name:</label>
+      <input class="template-name-control" placeholder="Enter Name Here" type="text" [formControl]="templateName"/>
+    </div>
+    <div class="btn-actions">
+      <button (click)="deleteTemplate()">Delete</button>
+      <button (click)="updateMode()">{{isEditMode ? 'Preview' : 'Edit Mode'}}</button>
+      <button (click)="generatePDF()" [disabled]="(isEditMode)">Download</button>
+      <button class="btn-fill" (click)="saveTemplate()">Save Template</button>
+    </div>
+  </div>
+  <div class="j-editor-body">
+    <div class="j-editor-aside">
+      <j-collapse headerName="LAYOUT MODULES">
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="layoutTwoColLeft">
+          <svg width="47" height="20" viewBox="0 0 47 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="13" height="19" rx="1.5" stroke="#205280" />
+            <rect x="18.5" y="0.5" width="28" height="19" rx="1.5" stroke="#205280" />
+          </svg>
+          <span>2 columns</span>
+        </div>
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="layoutTwoColRight">
+          <svg width="47" height="20" viewBox="0 0 47 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="-0.5" y="0.5" width="13" height="19" rx="1.5" transform="matrix(-1 0 0 1 46 0)" stroke="#205280" />
+            <rect x="-0.5" y="0.5" width="28" height="19" rx="1.5" transform="matrix(-1 0 0 1 28 0)" stroke="#205280" />
+          </svg>
+          <span>2 columns</span>
+        </div>
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="layoutThreeCol">
+          <svg width="47" height="20" viewBox="0 0 47 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0.5" y="0.5" width="13" height="19" rx="1.5" stroke="#205280" />
+            <rect x="17" y="0.5" width="13" height="19" rx="1.5" stroke="#205280" />
+            <rect x="33.5" y="0.5" width="13" height="19" rx="1.5" stroke="#205280" />
+          </svg>
+          <span>3 columns</span>
+        </div>
+      </j-collapse>
+
+      <j-collapse headerName="Content Elements">
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="h">
+          <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M13.75 4.55C13.5015 4.55 13.3 4.75147 13.3 5C13.3 5.24853 13.5015 5.45 13.75 5.45H14.9456V9.54984H10.0456V5.45H11.25C11.4985 5.45 11.7 5.24853 11.7 5C11.7 4.75147 11.4985 4.55 11.25 4.55H7.74999C7.50146 4.55 7.29999 4.75147 7.29999 5C7.29999 5.24853 7.50146 5.45 7.74999 5.45H8.94564V14.55H7.74999C7.50146 14.55 7.29999 14.7515 7.29999 15C7.29999 15.2485 7.50146 15.45 7.74999 15.45H11.25C11.4985 15.45 11.7 15.2485 11.7 15C11.7 14.7515 11.4985 14.55 11.25 14.55H10.0456V10.4498H14.9456V14.55H13.75C13.5015 14.55 13.3 14.7515 13.3 15C13.3 15.2485 13.5015 15.45 13.75 15.45H17.25C17.4985 15.45 17.7 15.2485 17.7 15C17.7 14.7515 17.4985 14.55 17.25 14.55H16.0457V5.45H17.25C17.4985 5.45 17.7 5.24853 17.7 5C17.7 4.75147 17.4985 4.55 17.25 4.55H13.75Z"
+              fill="#205280" />
+          </svg>
+          <span>Header</span>
+        </div>
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="p">
+          <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.94999 5.45001V6.99997C8.94999 7.2485 8.74851 7.44997 8.49999 7.44997C8.25146 7.44997 8.04999 7.2485 8.04999 6.99997V5.00003C8.04999 4.95245 8.05737 4.9066 8.07105 4.86356C8.12884 4.68174 8.29903 4.55001 8.49999 4.55001H16.5C16.6554 4.55001 16.7923 4.62871 16.8732 4.74841C16.9217 4.82023 16.95 4.90681 16.95 5.00001V6.99997C16.95 7.2485 16.7486 7.44997 16.5 7.44997C16.2515 7.44997 16.05 7.2485 16.05 6.99997V5.45001H13.05V14.55H14.2543C14.5029 14.55 14.7043 14.7515 14.7043 15C14.7043 15.2486 14.5029 15.45 14.2543 15.45H10.7543C10.5058 15.45 10.3043 15.2486 10.3043 15C10.3043 14.7515 10.5058 14.55 10.7543 14.55H11.95V5.45001H8.94999Z"
+              fill="#205280" />
+          </svg>
+          <span>Paragraph</span>
+        </div>
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="spacer">
+          <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M12.8184 3.1818C12.6426 3.00606 12.3577 3.00606 12.182 3.1818L10.182 5.1818C10.0063 5.35754 10.0063 5.64246 10.182 5.8182C10.3577 5.99393 10.6426 5.99393 10.8184 5.8182L12.0502 4.58639V8.00024C12.0502 8.24877 12.2517 8.45024 12.5002 8.45024C12.7487 8.45024 12.9502 8.24877 12.9502 8.00024V4.58639L14.182 5.8182C14.3577 5.99393 14.6426 5.99393 14.8184 5.8182C14.9941 5.64246 14.9941 5.35754 14.8184 5.1818L12.8184 3.1818ZM12.9502 15.4136V12.0002C12.9502 11.7517 12.7487 11.5502 12.5002 11.5502C12.2517 11.5502 12.0502 11.7517 12.0502 12.0002V15.4136L10.8184 14.1818C10.6426 14.0061 10.3577 14.0061 10.182 14.1818C10.0063 14.3575 10.0063 14.6424 10.182 14.8182L12.182 16.8182C12.2664 16.9026 12.3808 16.95 12.5002 16.95C12.6195 16.95 12.734 16.9026 12.8184 16.8182L14.8184 14.8182C14.9941 14.6424 14.9941 14.3575 14.8184 14.1818C14.6426 14.0061 14.3577 14.0061 14.182 14.1818L12.9502 15.4136ZM6.5 9.50018C6.22386 9.50018 6 9.72404 6 10.0002C6 10.2763 6.22386 10.5002 6.5 10.5002H18.5C18.7762 10.5002 19 10.2763 19 10.0002C19 9.72404 18.7762 9.50018 18.5 9.50018H6.5Z"
+              fill="#205280" />
+          </svg>
+
+          <span>Spacer</span>
+        </div>
+        <div class="j-collapse-item" [ngClass]="{'inactive': !isEditMode}" Draggable componentType="table">
+          <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M13 4.5H17.5C17.7761 4.5 18 4.72386 18 5V7.5H13V4.5ZM12 7.5V4.5H7.5C7.22386 4.5 7 4.72386 7 5V7.5H12ZM7 8.5V11.5H12V8.5H7ZM13 8.5H18V11.5H13V8.5ZM13 12.5H18V15C18 15.2761 17.7761 15.5 17.5 15.5H13V12.5ZM7 15V12.5H12V15.5H7.5C7.22386 15.5 7 15.2761 7 15ZM6 5C6 4.17157 6.67157 3.5 7.5 3.5H17.5C18.3284 3.5 19 4.17157 19 5V15C19 15.8284 18.3284 16.5 17.5 16.5H7.5C6.67157 16.5 6 15.8284 6 15V5Z"
+              fill="#205280" />
+          </svg>
+          <span>Table</span>
+        </div>
+      </j-collapse>
+      <j-collapse headerName="IMAGES">
+        <app-multi-image-upload-container></app-multi-image-upload-container>
+      </j-collapse>
+      <j-collapse headerName="SIGNATURES">
+        <app-multi-image-upload-container></app-multi-image-upload-container>
+      </j-collapse>
+    </div>
+    <div class="j-editor-content">
+      <div id="ngxPrintId">
+        <app-j-editor [template]="editorTemplate"></app-j-editor>
+      </div>
+    </div>
+    <div class="j-editor-aside">
+      <app-content-element-container-config [content-element]="currentSetting"></app-content-element-container-config>
+      <app-variables-container></app-variables-container>
+    </div>
+  </div>
+</div>
