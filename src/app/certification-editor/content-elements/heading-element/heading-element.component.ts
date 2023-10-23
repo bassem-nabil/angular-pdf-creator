@@ -16,6 +16,7 @@ export class HeadingElementComponent {
 
   @Input() data: any;
 
+  showEditors = false;
   editor!: Editor;
   prevEditorContentValue: any = "<h1>HEADING</h1>";
   editorContent = new FormControl<any>({ value: null, disabled: false });

@@ -7,6 +7,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 export class DraggableDirective {
 
   @Input() componentType! : string;
+  @Input() deletePrev!: boolean;
   @Input() componentData: any = {};
 
   constructor(private element: ElementRef<HTMLElement>) {
@@ -24,7 +25,8 @@ export class DraggableDirective {
   private stringifyObject(){
     return JSON.stringify({
       componentType: this.componentType,
-      componentData: this.componentData
+      componentData: this.componentData,
+      deletePrev: this.deletePrev
     });
   }
 }

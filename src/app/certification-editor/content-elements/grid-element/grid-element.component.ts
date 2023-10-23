@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-grid-2-columns-left-element',
+  selector: 'app-grid-1-columns-left-element',
   standalone: true,
   imports: [CommonModule, DroppableZoneDirective],
   template: `
@@ -25,14 +25,14 @@ import { Observable } from 'rxjs';
         background:#fff;
     }`,
     `.min-p {
-      padding:17px;
+      // padding:17px;
     }`,
     `.j-grid-element .droppable-item {
         width: 100%;
         padding: 20px;
         border: 1px dashed #2C363A;
         background: #F0F4F6;
-        border-radius: 7px;
+        // border-radius: 7px;
         text-align: center;
         color:#333;
         font-size: 13px;
@@ -89,14 +89,14 @@ export class Grid1ColumnElementComponent implements AfterViewInit {
         background:#fff;
     }`,
     `.min-p {
-      padding:17px;
+      // padding:17px;
     }`,
     `.j-grid-element .droppable-item {
         width: 100%;
         padding: 20px;
         border: 1px dashed #2C363A;
         background: #F0F4F6;
-        border-radius: 7px;
+        // border-radius: 7px;
         text-align: center;
         color:#333;
         font-size: 13px;
@@ -156,14 +156,14 @@ export class Grid2ColumnsLeftElementComponent implements AfterViewInit {
         background:#fff;
     }`,
     `.min-p {
-      padding:17px;
+      // padding:17px;
     }`,
     `.j-grid-element .droppable-item {
         width: 100%;
         padding: 20px;
         border: 1px dashed #2C363A;
         background: #F0F4F6;
-        border-radius: 7px;
+        // border-radius: 7px;
         text-align: center;
         color:#333;
         font-size: 13px;
@@ -227,14 +227,14 @@ export class Grid2ColumnsRightElementComponent implements AfterViewInit {
         background:#fff;
     }`,
     `.min-p {
-      padding:17px;
+      // padding:17px;
     }`,
     `.j-grid-element .droppable-item {
         width: 100%;
         padding: 20px;
         border: 1px dashed #2C363A;
         background: #F0F4F6;
-        border-radius: 7px;
+        // border-radius: 7px;
         text-align: center;
         color:#333;
         font-size: 13px;

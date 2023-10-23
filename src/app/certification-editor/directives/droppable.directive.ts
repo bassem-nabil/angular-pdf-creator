@@ -20,7 +20,7 @@ export class DroppableDirective {
   placeHolderIndex = -1;
 
   constructor(
-    @Host() private hostComp: JEditorComponent,
+    // @Host() private hostComp: JEditorComponent,
     private editorSrv: EditorService
   ) { }
 
@@ -57,7 +57,7 @@ export class DroppableDirective {
       this.isEntered = false;
     });
     this.placeHolderIndex = -1;
-    this.hostComp.isEmpty = false;
+    // this.hostComp.noChildrenExist = false;
   }
 
   loadPlaceHolder(){
@@ -112,7 +112,10 @@ export class DroppableDirective {
     }
 
     event.stopPropagation();
-    this.containerRef.detach(this.placeHolderIndex);
+    // this.containerRef.detach(this.placeHolderIndex);
+    if(this.isDropZone(event.target as HTMLElement)) {
+      this.containerRef.detach(this.placeHolderIndex);
+    }
     const obj = parseObject(event.dataTransfer!.getData('text/plain'));
     this.loadComponent(obj, this.placeHolderIndex);
     return false;

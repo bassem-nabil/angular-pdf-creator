@@ -15,6 +15,7 @@ import { EditorService } from '../../services/editor.service';
 export class ParagraphElementComponent implements OnInit {
   @Input() data: any;
 
+  showEditors = false;
   editor!: Editor;
   prevEditorContentValue: any = '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, recusandae. Alias, blanditiis corrupti et illo ea placeat voluptatibus, quas, optio vitae quae repellendus nihil necessitatibus ratione vero suscipit odio laboriosam.</p>'
   editorContent = new FormControl<any>({ value: null, disabled: false });

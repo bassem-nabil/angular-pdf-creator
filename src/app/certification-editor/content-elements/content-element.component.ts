@@ -36,7 +36,7 @@ export class ContentElementComponent {
     this.isEditMode$ = this.editorSrv.isEditMode$;
   }
 
-  updateContent(obj: DragDropObject) {
+  updateContent(obj: DragDropObject) {debugger
       this.containerRef.clear();
       const compRef = this.containerRef.createComponent(componentTreeMap[obj.componentType] as any);
       (compRef.instance as any).data = obj.componentData;
@@ -101,7 +101,7 @@ export class ContentElementComponent {
       gap: 10px;
       background:#C9D1DA;
       padding:10px;
-      border-radius: 7px;
+        // border-radius: 7px;
     }`,
     `input {
       max-width: 100%;

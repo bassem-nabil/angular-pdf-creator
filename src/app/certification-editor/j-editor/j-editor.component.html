@@ -1,9 +1,9 @@
-<div Droppable [containerRef]="viewContainerRef" class="j-editor">
+<div Droppable [containerRef]="viewContainerRef" class="j-editor" #customDropable>
   <!-- <app-placeholder-element></app-placeholder-element> -->
 
   <ng-container #containerRef></ng-container>
 
-  <div class="j-editor-empty" *ngIf="isEmpty">
+  <div class="j-editor-empty" *ngIf="checkChildrenExist()">
     <svg xmlns="http://www.w3.org/2000/svg" width="196" height="82" viewBox="0 0 196 82" fill="none">
       <rect width="66" height="22" rx="5" fill="#C9D1DA" />
       <rect y="30" width="66" height="22" rx="5" fill="#C9D1DA" />
@@ -15,7 +15,7 @@
       <circle cx="73" cy="40.5" r="1.5" fill="#E6EDF0" />
     </svg>
     <div class="empty-msg">
-      Drag elements from the left sidebar and drop<br/>them here to create your template
+      Drag elements from the left sidebar and drop<br />them here to create your template
     </div>
   </div>
 </div>

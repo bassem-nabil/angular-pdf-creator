@@ -14,10 +14,10 @@ import { EditorService, EditorTemplate } from '../services/editor.service';
 export class JEditorComponent implements OnInit, AfterViewInit {
 
   isEditMode = true;
-  isEmpty = true;
   @Input() template!: EditorTemplate | null;
 
   @ViewChild('containerRef', {read: ViewContainerRef}) viewContainerRef!: ViewContainerRef;
+  @ViewChild('customDropable') customDropable!: any;
   @ViewChild(DroppableDirective, { static: true }) droppableDirective!: DroppableDirective;
 
   constructor(
@@ -37,6 +37,7 @@ export class JEditorComponent implements OnInit, AfterViewInit {
   initTemplateContent() {
     if(!this.template)
       return;
+
     this.editorSrv.updateVariablesGroups(this.template.variables);
     this.editorSrv.setTemplateName(this.template.templateName);
 
@@ -47,5 +48,17 @@ export class JEditorComponent implements OnInit, AfterViewInit {
     // this.editorSrv.addContentElement();
   }
 
-
+  checkChildrenExist(): boolean {
+    if (this.viewContainerRef && this.viewContainerRef.length > 0) {
+      if(this.viewContainerRef.length === 1 && this.customDropable && this.customDropable.nativeElement) {
+        let placeholderEl = this.customDropable.nativeElement.getElementsByTagName('app-placeholder-element') // Array with 3 h3 elements
+        if (placeholderEl && placeholderEl.length > 0) {
+          return true;
+        }
+      }
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
