@@ -26,6 +26,7 @@ export class ContentElementComponent {
   @Output() onContentDelete = new EventEmitter();
   @Output() onOpenPaddingSetting = new EventEmitter<ContentElementStyle>();
 
+  componentId!: string;
   showDeleteEl = false;
   isEditMode$!: Observable<boolean>;
   contentCompRef!: ComponentRef<any> | null;
@@ -33,10 +34,12 @@ export class ContentElementComponent {
   constructor(
     private editorSrv: EditorService
   ) {
+    this.componentId = crypto.randomUUID();
     this.isEditMode$ = this.editorSrv.isEditMode$;
   }
 
-  updateContent(obj: DragDropObject) {debugger
+  updateContent(obj: DragDropObject) {
+    if (obj && obj.componentType) {
       this.containerRef.clear();
       const compRef = this.containerRef.createComponent(componentTreeMap[obj.componentType] as any);
       (compRef.instance as any).data = obj.componentData;
@@ -51,6 +54,11 @@ export class ContentElementComponent {
       // compRef.instance.data = componentData;
       this.containerRef.insert(compRef.hostView);
       this.contentCompRef = compRef;
+
+      if(obj.deletePrev) {
+        this.editorSrv.deleteComponentById(obj.componentId!);
+      }
+    }
   }
 
   removeContent() {

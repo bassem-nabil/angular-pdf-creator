@@ -3,7 +3,7 @@
     'padding-bottom': data.style?.paddingBottom+'px',
     'padding-left': data.style?.paddingLeft+'px',
     'padding-right': data.style?.paddingRight+'px',
-  }" (mouseenter)="showDeleteEl = true" (mouseleave)="showDeleteEl = false">
+  }" (focusin)="showDeleteEl = true" (focusout)="showDeleteEl = false">
 
   <span class="deleteEl-custom" *ngIf="insideDropZone && showDeleteEl" (click)="removeContent()"></span>
 
@@ -15,7 +15,7 @@
           fill="#001534" />
       </svg>
     </button>
-    <button *ngIf="!insideDropZone" class="btn-option" (click)="removeContent()" Draggable
+    <button *ngIf="!insideDropZone" class="btn-option" Draggable [componentId]="componentId"
       [componentData]="data.componentData" [componentType]="data.componentType" [deletePrev]="true">
       <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

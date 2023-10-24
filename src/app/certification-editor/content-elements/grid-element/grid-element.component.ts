@@ -85,7 +85,7 @@ export class Grid1ColumnElementComponent implements AfterViewInit {
     `.j-grid-element {
         display: grid;
         grid-template-columns: 1fr 3fr;
-        gap: 20px;
+        gap: 18px;
         background:#fff;
     }`,
     `.min-p {
@@ -151,7 +151,7 @@ export class Grid2ColumnsLeftElementComponent implements AfterViewInit {
     `.j-grid-element {
         display: grid;
         grid-template-columns: 3fr 1fr;
-        gap: 20px;
+        gap: 18px;
         /* padding:20px; */
         background:#fff;
     }`,
@@ -223,7 +223,7 @@ export class Grid2ColumnsRightElementComponent implements AfterViewInit {
     `.j-grid-element {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
+        gap: 18px;
         background:#fff;
     }`,
     `.min-p {

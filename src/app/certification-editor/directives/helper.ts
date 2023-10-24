@@ -10,4 +10,5 @@ export type DragDropObject = {
   componentData: any,
   style?: ContentElementStyle,
   deletePrev?: boolean,
+  componentId?: string,
 }

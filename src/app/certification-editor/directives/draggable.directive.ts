@@ -1,4 +1,5 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { EditorService } from '../services/editor.service';
 
 @Directive({
   selector: '[Draggable]',
@@ -8,9 +9,11 @@ export class DraggableDirective {
 
   @Input() componentType! : string;
   @Input() deletePrev!: boolean;
+  @Input() componentId!: string;
   @Input() componentData: any = {};
 
-  constructor(private element: ElementRef<HTMLElement>) {
+  constructor(private element: ElementRef<HTMLElement>,
+  private _editorService: EditorService){
     this.element.nativeElement.setAttribute('draggable', 'true');
   }
 
@@ -26,7 +29,8 @@ export class DraggableDirective {
     return JSON.stringify({
       componentType: this.componentType,
       componentData: this.componentData,
-      deletePrev: this.deletePrev
+      deletePrev: this.deletePrev,
+      componentId: this.componentId
     });
   }
 }

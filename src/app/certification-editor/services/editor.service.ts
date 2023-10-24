@@ -2,6 +2,7 @@ import { ComponentRef, EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { ContentElementComponent } from '../content-elements/content-element.component';
 import { ContentElementData, ContentElementStyle } from '../content-elements/content-element.interface';
+import { DragDropObject } from '../directives/helper';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,16 @@ export class EditorService {
     const templateJson = localStorage.getItem('editorTemplate');
     if (!templateJson) return null;
     return JSON.parse(templateJson) as EditorTemplate;
+  }
+
+  deleteComponentById(componentId: string) {
+    const compRef = this._components.find(comp => componentId === comp.instance.componentId);
+    if (compRef) {
+      compRef.destroy();
+      this._components = this._components.filter(comp => compRef != comp);
+    } else {
+      console.log('cannot delete component ' + componentId, 'color: red');
+    }
   }
 
 }

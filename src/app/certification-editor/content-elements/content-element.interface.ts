@@ -30,7 +30,7 @@ export const initContentElementData : ContentElementData = {
 export const componentTreeMap = {
   p: ParagraphElementComponent,
   h: HeadingElementComponent,
-  layoutOneColLeft: Grid1ColumnElementComponent,
+  layoutOneCol: Grid1ColumnElementComponent,
   layoutTwoColLeft: Grid2ColumnsLeftElementComponent,
   layoutTwoColRight: Grid2ColumnsRightElementComponent,
   layoutThreeCol: Grid3ColumnsElementComponent,
