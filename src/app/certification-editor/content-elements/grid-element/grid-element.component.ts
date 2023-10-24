@@ -59,9 +59,8 @@ export class Grid1ColumnElementComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout( () =>{
-      if(this.data.left || this.data.right) {
-        this.droppableZoneDirective.get(0)!.loadComponent(this.data.left as ContentElementData);
-        this.droppableZoneDirective.get(1)!.loadComponent(this.data.right as ContentElementData);
+      if(this.data && this.data.middle) {
+        this.droppableZoneDirective.get(0)!.loadComponent(this.data.middle as ContentElementData);
       }
     },0);
   }
@@ -123,8 +122,10 @@ export class Grid2ColumnsLeftElementComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout( () =>{
-      if(this.data.left || this.data.right) {
+      if(this.data && this.data.left) {
         this.droppableZoneDirective.get(0)!.loadComponent(this.data.left as ContentElementData);
+      }
+      if(this.data && this.data.right) {
         this.droppableZoneDirective.get(1)!.loadComponent(this.data.right as ContentElementData);
       }
     },0);
@@ -190,8 +191,10 @@ export class Grid2ColumnsRightElementComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout( () =>{
-      if(this.data.left || this.data.right) {
+      if(this.data && this.data.left) {
         this.droppableZoneDirective.get(0)!.loadComponent(this.data.left as ContentElementData);
+      }
+      if(this.data && this.data.right) {
         this.droppableZoneDirective.get(1)!.loadComponent(this.data.right as ContentElementData);
       }
     },0);
@@ -261,9 +264,13 @@ export class Grid3ColumnsElementComponent implements AfterViewInit  {
 
   ngAfterViewInit(): void {
     setTimeout( () =>{
-      if(this.data.left || this.data.right) {
+      if(this.data && this.data.left) {
         this.droppableZoneDirective.get(0)!.loadComponent(this.data.left as ContentElementData);
+      }
+      if(this.data && this.data.middle) {
         this.droppableZoneDirective.get(1)!.loadComponent(this.data.middle as ContentElementData);
+      }
+      if(this.data && this.data.right) {
         this.droppableZoneDirective.get(2)!.loadComponent(this.data.right as ContentElementData);
       }
     },0);
