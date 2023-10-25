@@ -101,7 +101,9 @@ export class EditorService {
     const elements = document.getElementsByClassName('z2-customElement');
     for (let index = 0; index < elements.length; index++) {
       const el = elements[index];
-      renderer.removeChild(el.parentNode,el);
+      if (el && el.parentNode){
+        renderer.removeChild(el.parentNode,el);
+      }
     }
   }
 
@@ -109,7 +111,9 @@ export class EditorService {
     const elements = document.getElementsByTagName('app-placeholder-element');
     for (let index = 0; index < elements.length; index++) {
       const el = elements[index];
-      renderer.removeChild(el.parentNode,el);
+      if (el && el.parentNode){
+        renderer.removeChild(el.parentNode,el);
+      }
     }
   }
 
