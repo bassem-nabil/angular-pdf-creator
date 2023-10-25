@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Editor, NgxEditorModule, Toolbar } from 'ngx-editor';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +16,7 @@ export class ParagraphElementComponent implements OnInit {
   @Input() data: any;
 
   showEditors = false;
+  dragEvent: any = null;
   editor!: Editor;
   prevEditorContentValue: any = '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, recusandae. Alias, blanditiis corrupti et illo ea placeat voluptatibus, quas, optio vitae quae repellendus nihil necessitatibus ratione vero suscipit odio laboriosam.</p>'
   editorContent = new FormControl<any>({ value: null, disabled: false });
@@ -25,7 +26,32 @@ export class ParagraphElementComponent implements OnInit {
 
   @Output() onDataChange = new EventEmitter<{dataKey: string, dataValue: any}>();
 
+  @HostListener('dragenter', ['$event'])
+  handleDragEnter(event: DragEvent) {
+    this.dragEvent = event.target;
+    const el = this.element.nativeElement;
+    if (el) {
+        this.editorSrv.addOverLayDiv(el,this.renderer);
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  @HostListener('dragleave', ['$event'])
+  handleDragLeave(event: DragEvent) {
+    if (this.dragEvent === event.target) {
+      const el = this.element.nativeElement;
+      if (el) {
+        this.editorSrv.removeOverLayDiv(el,this.renderer);
+      }
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
   constructor(
+    private renderer: Renderer2,
+    private element: ElementRef<HTMLElement>,
     private editorSrv: EditorService
   ) {
     this.isEditMode$ = this.editorSrv.isEditMode$;

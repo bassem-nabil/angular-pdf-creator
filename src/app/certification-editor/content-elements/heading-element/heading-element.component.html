@@ -1,9 +1,9 @@
-<div class="j-heading-element">
+<div class="j-heading-element customContainer">
   <div class="tooblar-container" *ngIf="showEditors && (isEditMode$ | async)">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
     </ngx-editor-menu>
   </div>
-  <div class="editor-container" [ngStyle]="{'border':showEditors === true ? '0.1px solid #e7dfdf' : 'none' }"
+  <div class="editor-container" [ngStyle]="{'border':showEditors === true ? '0.1px solid rgb(32, 82, 128)' : 'none' }"
     (focusin)="showEditors = true" (focusout)="showEditors = false">
     <ngx-editor [formControl]="editorContent" [editor]="editor">
     </ngx-editor>

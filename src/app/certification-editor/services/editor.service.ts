@@ -1,4 +1,4 @@
-import { ComponentRef, EventEmitter, Injectable } from '@angular/core';
+import { ComponentRef, EventEmitter, Injectable, Renderer2 } from '@angular/core';
 import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { ContentElementComponent } from '../content-elements/content-element.component';
 import { ContentElementData, ContentElementStyle } from '../content-elements/content-element.interface';
@@ -97,6 +97,36 @@ export class EditorService {
     }
   }
 
+  removeAllZ2CustomElements(renderer: Renderer2){
+    const elements = document.getElementsByClassName('z2-customElement');
+    for (let index = 0; index < elements.length; index++) {
+      const el = elements[index];
+      renderer.removeChild(el.parentNode,el);
+    }
+  }
+
+  removeAllPlaceHolders(renderer: Renderer2){
+    const elements = document.getElementsByTagName('app-placeholder-element');
+    for (let index = 0; index < elements.length; index++) {
+      const el = elements[index];
+      renderer.removeChild(el.parentNode,el);
+    }
+  }
+
+  removeOverLayDiv(el: HTMLElement,renderer: Renderer2) {
+    const div = el.querySelector('.z2-customElement') as any;
+    if (div) {
+      renderer.removeChild(el,div);
+    }
+  }
+
+  addOverLayDiv(el: HTMLElement,renderer: Renderer2) {
+    if (!el.querySelector('.z2-customElement') as any) {
+      const div = renderer.createElement('div');
+      renderer.addClass(div, 'z2-customElement');
+      renderer.appendChild(el, div);
+    }
+  }
 }
 
 

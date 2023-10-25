@@ -1,4 +1,4 @@
-import { ComponentRef, Directive, Host, HostListener, Input, ViewContainerRef} from '@angular/core';
+import { ComponentRef, Directive, Host, HostListener, Input, Renderer2, ViewContainerRef} from '@angular/core';
 import { JEditorComponent } from '../j-editor/j-editor.component';
 import { PlaceholderElementComponent } from '../content-elements/placeholder-element/placeholder-element.component';
 import { componentTreeMap } from '../content-elements/content-element.interface';
@@ -20,11 +20,14 @@ export class DroppableDirective {
   placeHolderIndex = -1;
 
   constructor(
-    // @Host() private hostComp: JEditorComponent,
+    private renderer: Renderer2,
     private editorSrv: EditorService
   ) { }
 
   loadComponent(obj: DragDropObject, index: number | undefined = undefined, contRef: ViewContainerRef|undefined = undefined) {
+
+    this.editorSrv.removeAllPlaceHolders(this.renderer);
+    this.editorSrv.removeAllZ2CustomElements(this.renderer);
 
     const containerRef = contRef ? contRef : this.containerRef;
     const contentElementRef = containerRef.createComponent(ContentElementComponent);

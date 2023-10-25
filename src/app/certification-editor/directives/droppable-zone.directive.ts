@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Host, HostListener, Input, Optional, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Host, HostListener, Input, Optional, Renderer2, ViewContainerRef } from '@angular/core';
 import { componentTreeMap } from '../content-elements/content-element.interface';
 import { DragDropObject, parseObject } from './helper';
 import { ContentElementComponent } from '../content-elements/content-element.component';
@@ -21,6 +21,7 @@ export class DroppableZoneDirective {
     @Host() @Optional() private hostComp3: Grid3ColumnsElementComponent,
     private element: ElementRef<HTMLElement>,
     private viewContainerRef: ViewContainerRef,
+    private renderer: Renderer2,
     private editorSrv: EditorService
   ) { }
 
@@ -47,6 +48,9 @@ export class DroppableZoneDirective {
   }
 
   loadComponent(obj: DragDropObject) {
+    this.editorSrv.removeAllPlaceHolders(this.renderer);
+    this.editorSrv.removeAllZ2CustomElements(this.renderer);
+
     if(obj && obj.componentType && obj.componentType.startsWith(('layout'))) {
       alert('Content elements are the only ones that can be dropped.');
       this.resetDropZoneStyle();
@@ -67,6 +71,7 @@ export class DroppableZoneDirective {
     this.element.nativeElement.setAttribute('aria-empty', 'false');
     this.hostComp.data[this.gridZone] = obj;
     this.hostComp.onDataChange.emit({ dataKey: this.gridZone, dataValue: obj });
+
   }
 
   private resetDropZoneStyle() {

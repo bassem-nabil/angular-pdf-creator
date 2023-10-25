@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output,ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Editor, NgxEditorModule, Toolbar, toHTML } from 'ngx-editor';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Observable, debounceTime } from 'rxjs';
 import { EditorService } from '../../services/editor.service';
+import { AnimationMetadata, style, animate, AnimationBuilder } from '@angular/animations';
 
 @Component({
   selector: 'app-heading-element',
@@ -18,16 +19,40 @@ export class HeadingElementComponent {
 
   showEditors = false;
   editor!: Editor;
+  dragEvent: any = null;
   prevEditorContentValue: any = "<h1>HEADING</h1>";
   editorContent = new FormControl<any>({ value: null, disabled: false });
   toolbar = headingToolbarEditorDefaultConfig;
-
   isEditMode$!: Observable<boolean>;
 
   @Output() onDataChange = new EventEmitter<{dataKey: string, dataValue: any}>();
 
+  @HostListener('dragenter', ['$event'])
+  handleDragEnter(event: DragEvent) {
+    this.dragEvent = event.target;
+    const el = this.element.nativeElement;
+    if (el) {
+      this.editorSrv.addOverLayDiv(el,this.renderer);
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+  @HostListener('dragleave', ['$event'])
+  handleDragLeave(event: DragEvent) {
+    if (this.dragEvent === event.target) {
+      const el = this.element.nativeElement;
+      if (el) {
+        this.editorSrv.removeOverLayDiv(el,this.renderer);
+      }
+    }
+    event.stopPropagation();
+    event.preventDefault();
+  }
 
   constructor(
+    private renderer: Renderer2,
+    private element: ElementRef<HTMLElement>,
     private editorSrv: EditorService
   ) {
     this.isEditMode$ = this.editorSrv.isEditMode$;
@@ -63,8 +88,6 @@ export class HeadingElementComponent {
       this.onDataChange.emit({dataKey: 'htmlContent', dataValue: val});
     });
   }
-
-
 }
 
 export const headingToolbarEditorDefaultConfig: Toolbar = [

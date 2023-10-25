@@ -1,4 +1,4 @@
-import { Component, ComponentRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component,Renderer2, ComponentRef, EventEmitter,ElementRef, HostListener, Input, OnChanges, Output, SimpleChanges, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, debounceTime } from 'rxjs';
 import { EditorService } from '../services/editor.service';
@@ -8,6 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DragDropObject } from '../directives/helper';
 import { DraggableDirective } from '../directives/draggable.directive';
 import {CdkMenu, CdkMenuItem, CdkContextMenuTrigger} from '@angular/cdk/menu';
+import { AnimationBuilder, AnimationMetadata, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-content-element',
@@ -31,6 +32,7 @@ export class ContentElementComponent {
   isEditMode$!: Observable<boolean>;
   contentCompRef!: ComponentRef<any> | null;
 
+
   constructor(
     private editorSrv: EditorService
   ) {
@@ -46,7 +48,31 @@ export class ContentElementComponent {
       ((compRef.instance as any).onDataChange as Observable<{dataKey: string, dataValue: any}>).subscribe( res => {
         this.data.componentData[res.dataKey] = res.dataValue;
       });
-      // (compRef.instance as any). = obj.componentData;
+    //   (compRef.location.nativeElement as HTMLElement).addEventListener('dragenter', (event) => {
+    // this.dragEvent = event.target;
+    // const el = this.element.nativeElement;
+    // if (el) {
+    //   const containerEL = el.getElementsByClassName('z2-customContainer') as any;
+    //   if (containerEL) {
+    //     this.addOverLayDiv(containerEL[0]);
+    //   }
+    // }
+    // event.stopPropagation();
+    // event.preventDefault();
+    //   });
+    // (compRef.location.nativeElement as HTMLElement).addEventListener('dragleave', (event) => {
+    // if (this.dragEvent === event.target) {
+    //   const el = this.element.nativeElement;
+    //   if (el) {
+    //     const containerEL = el.getElementsByClassName('z2-customContainer') as any;
+    //     if (containerEL) {
+    //       this.removeOverLayDiv(containerEL[0]);
+    //     }
+    //   }
+    // }
+    // event.stopPropagation();
+    // event.preventDefault();
+    //   });
       this.data.componentType = obj.componentType;
       this.data.componentData = obj.componentData;
       if(obj.style)
@@ -70,6 +96,7 @@ export class ContentElementComponent {
   openPaddingSetting() {
     this.onOpenPaddingSetting.emit(this.data.style);
   }
+
 }
 
 
