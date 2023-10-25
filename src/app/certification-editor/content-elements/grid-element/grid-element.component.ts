@@ -45,8 +45,7 @@ export class Grid1ColumnElementComponent implements AfterViewInit {
 
 
   @Input() data: any = {
-    left: null,
-    right: null
+    middle: null,
   };
 
   isEditMode$: Observable<boolean>;
@@ -217,7 +216,7 @@ export class Grid2ColumnsRightElementComponent implements AfterViewInit {
     <div class="droppable-item" DroppableZone [gridType]="'Grid3Columns'" [gridZone]="'middle'">
       Drop Content Here
     </div>
-    <div class="droppable-item" DroppableZone [gridType]="'Grid3Columns'" [gridZone]="'left'">
+    <div class="droppable-item" DroppableZone [gridType]="'Grid3Columns'" [gridZone]="'right'">
       Drop Content Here
     </div>
   </div>

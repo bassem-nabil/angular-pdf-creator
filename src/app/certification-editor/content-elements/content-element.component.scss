@@ -81,10 +81,9 @@
 }
 .deleteEl-custom {
   position: absolute;
-  top: 0;
   right: 0;
   cursor: pointer;
   font-size: larger;
-  z-index: 9;
+  z-index: 9999;
   font-weight: 900;
 }
