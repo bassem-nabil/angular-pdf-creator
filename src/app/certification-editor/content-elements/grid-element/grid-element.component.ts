@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
     `.j-grid-element {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 100px;
+        gap: 0px;
         background:#fff;
     }`,
     `.min-p {
