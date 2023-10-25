@@ -84,13 +84,12 @@
     overflow-y: auto;
     padding-top: 47px;
     > div {
-      // width: calc(447px * 2);
-      width: calc(413px * 2);
+      width: 1000px !important;
+      // width: calc(413px * 2);
       min-height: calc(631px * 2);
       margin:auto;
-      border: 1px dashed #b3b1b1;
-      background: #F0F4F6;
-      // overflow: hidden;
+      // border: 1px dashed #b3b1b1;
+      // background: #F0F4F6;
     }
   }
 }

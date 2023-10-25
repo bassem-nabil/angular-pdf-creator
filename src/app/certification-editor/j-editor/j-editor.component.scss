@@ -13,8 +13,14 @@
     margin-top: 50px;
   }
 }
-
-
+.j-editorCustomWrap{
+  margin: auto !important;
+  width: 1000px !important;
+}
 .j-editor {
+  margin: auto !important;
+  width: 816px !important;
   min-height: calc(631px * 2);
+  border: 1px dashed #b3b1b1;
+  background: #F0F4F6;
 }
