@@ -14,6 +14,7 @@ export class DroppableDirective {
 
   @Input() containerRef!: ViewContainerRef;
 
+  enteredCounter = 0;
   isEntered: boolean = false;
   componentRefs: Array<ComponentRef<any>> = [];
   placeHolderRef!: ComponentRef<PlaceholderElementComponent>;
@@ -64,11 +65,11 @@ export class DroppableDirective {
   }
 
   loadPlaceHolder(){
-    if(this.placeHolderRef && this.placeHolderIndex === -1){
-      this.containerRef.insert(this.placeHolderRef.hostView, this.containerRef.length)
-      this.placeHolderIndex = this.containerRef.length-1;
-      return;
-    }
+    // if(this.placeHolderRef && this.placeHolderIndex === -1){
+    //   this.containerRef.insert(this.placeHolderRef.hostView, this.containerRef.length)
+    //   this.placeHolderIndex = this.containerRef.length-1;
+    //   return;
+    // }
     if(this.placeHolderRef) {
       this.containerRef.move(this.placeHolderRef.hostView, this.containerRef.length-1);
       this.placeHolderIndex = this.containerRef.length-1;
@@ -87,10 +88,11 @@ export class DroppableDirective {
 
   @HostListener('dragenter', ['$event'])
   handleDragEnter(event: DragEvent) {
+    this.enteredCounter++;
     if(this.isDropZone(event.target as HTMLElement)) {
       this.containerRef.detach(this.placeHolderIndex);
     }
-    if(!this.isEntered){
+    if(!this.isEntered) {
       this.loadPlaceHolder();
     }
   }
@@ -101,8 +103,12 @@ export class DroppableDirective {
 
   @HostListener('dragleave', ['$event'])
   handleDragLeave(event: DragEvent) {
+    this.enteredCounter--;
     if(this.isEntered){
       return;
+    }
+    if (this.enteredCounter === 0) {
+      this.editorSrv.removeAllPlaceHolders(this.renderer);
     }
     this.isEntered = false;
   }
@@ -113,7 +119,7 @@ export class DroppableDirective {
       this.placeHolderIndex = -1;
       return;
     }
-
+    event.stopImmediatePropagation();
     event.stopPropagation();
     // this.containerRef.detach(this.placeHolderIndex);
     if(this.isDropZone(event.target as HTMLElement)) {

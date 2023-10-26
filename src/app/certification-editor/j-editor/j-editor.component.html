@@ -2,7 +2,9 @@
   <div class="j-editor" #customDropable>
     <!-- <app-placeholder-element></app-placeholder-element> -->
 
-    <ng-container #containerRef></ng-container>
+    <div id="divToPrintId">
+      <ng-container #containerRef></ng-container>
+    </div>
 
     <div class="j-editor-empty" *ngIf="checkChildrenExist()">
       <svg xmlns="http://www.w3.org/2000/svg" width="196" height="82" viewBox="0 0 196 82" fill="none">

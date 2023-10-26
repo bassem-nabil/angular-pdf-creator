@@ -5,7 +5,7 @@
     'padding-right': data.style?.paddingRight+'px',
   }" (focusin)="showDeleteEl = true" (focusout)="showDeleteEl = false">
 
-  <div class="deleteEl-custom" *ngIf="insideDropZone " (click)="removeContent()"></div>
+  <div class="deleteEl-custom" *ngIf="insideDropZone && (isEditMode$ | async)" (click)="removeContent()"></div>
 
   <div *ngIf="(isEditMode$ | async)" class="options">
     <button class="btn-option" (click)="removeContent()" *ngIf="!insideDropZone">

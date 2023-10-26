@@ -1,5 +1,5 @@
 import { Component, ComponentRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { JCollapseComponent } from './components/j-collapse/j-collapse.component';
 import { JEditorComponent } from './j-editor/j-editor.component';
 import { DraggableDirective } from './directives/draggable.directive';
@@ -16,17 +16,19 @@ import { debounceTime } from 'rxjs';
   standalone: true,
   imports: [CommonModule, JCollapseComponent, JEditorComponent, DraggableDirective, MultiImageUploadContainerComponent, VariablesContainerComponent, ContentElementContainerConfigComponent, ReactiveFormsModule],
   templateUrl: './certification-editor.component.html',
-  styleUrls: ['./certification-editor.component.scss']
+  styleUrls: ['./certification-editor.component.scss'],
+  providers: [DatePipe]
 })
 export class CertificationEditorComponent {
 
   isEditMode = true;
   templateName = new FormControl<string>('');
   currentSetting!: ComponentRef<ContentElementComponent>;
-
+  dateNow = new Date();
   editorTemplate: EditorTemplate | null = null;
 
   constructor(
+    private datePipe: DatePipe,
     private editorSrv: EditorService
   ) {
     this.editorSrv.onPaddingSetting.subscribe( _ => this.currentSetting = _);
@@ -58,15 +60,16 @@ export class CertificationEditorComponent {
   }
 
   generatePDF() {
-      var pdf = new jsPDF('p', 'px', 'a4');
-      const tempName = this.templateName.value != '' ? this.templateName.value : 'default-name';
-      document.getElementById('ngxPrintId')!.style.transform = 'scale(.5) translate(-50%, -50%)';
-      pdf.html(document.getElementById('ngxPrintId')!, {
-        callback: function (pdf) {
-          pdf.save(`${tempName}.pdf`);
-          document.getElementById('ngxPrintId')!.style.transform = 'none';
-        }
-      });
+    const currentDate =  this.datePipe.transform(this.dateNow, 'dd MMM yyyy hh:mm a');
+    var pdf = new jsPDF('p', 'px', 'a4');
+    const tempName = this.templateName.value != '' ? this.templateName.value : 'pdf-Certificate__' + currentDate;
+    document.getElementById('divToPrintId')!.style.transform = 'scale(.5) translate(-50%, -50%)';
+    pdf.html(document.getElementById('divToPrintId')!, {
+      callback: function (pdf) {
+        pdf.save(`${tempName}.pdf`);
+        document.getElementById('divToPrintId')!.style.transform = 'none';
+      }
+    });
   }
 
 }
