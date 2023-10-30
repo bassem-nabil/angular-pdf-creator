@@ -17,7 +17,7 @@ export class SpacerElementComponent {
   @Output() onDataChange = new EventEmitter<{dataKey: string, dataValue: any}>();
 
   values = [1,2,3,4,5];
-
+  showOptionEl = false;
   spaceValue = new FormControl<number>(10);
 
   isEditMode$!: Observable<boolean>;
